@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: lightyellow;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .flex-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #demographics {
+            background-color: lightgrey;
+        }
+
+        #medications {
+            background-color: lightskyblue;
+            min-width: 40px;
+            min-height: 40px;
+        }
+
+        #problems {
+            background-color: lightsalmon;
+            min-width: 40px;
+            min-height: 40px;
+        }
+
+        #health-maintenance {
+            background-color: aquamarine;
+        }
+        #main2 textarea{
+            height: 200px;
+        }
+        #logged-banner{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="logged-banner"><span>Paper Chart: </span><span>Logged in as: Davenport, Gary</span></h2>
+    <div class="flex-row" id="demographics">
+        <div><label for="last-name">Last Name:</label><input type="text" placeholder="Last Name" id="last-name"></div>
+        <div><label for="first-name">First Name:</label><input type="text" placeholder="First Name" id="last-name"></div>
+        <div><label for="dob">DOB:</label><input type="date" id="dob"></div>
+        <div><label for="sex">Sex:</label></div>
+        <select name="sex" id="sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <div><label for="patient-id">ID:</label><input type="text" disabled="disabled" id="patient-id" value="abc123"></div>
+    </div>
+    <nav>
+        <button id="show-main1">Inside Cover</button><button id="show-main2">Notes</button><button
+            id="show-main3">Results</button>
+    </nav>
+    <main id="main1">
+        <div class="flex-row">
+            <div id="health-maintenance">Health Maintenance</div>
+            <div class="flex-column">
+                <div id="problems">problems</div>
+                <div id="medications">medications</div>
+            </div>
+        </div>
+    </main>
+    <main id="main2">
+        <div class="flex-row">
+            <div class="flex-column">
+                <table>
+                    <tr><th>date</th><th>type</th><th>author</th>
+                    </tr>
+                    <tr><td>2022-03-01</td><td>progress</td><td>Davenport, Gary</td></tr>
+                    <tr><td>2022-03-01</td><td>consult</td><td>Davenport, Gary</td></tr>
+                </table>
+            </div>
+            <div class="flex-column">
+                <h2>Progress Note, Davenport, Gary 2022-03-01</h2>
+                <!-- <select>
+                    <option>Progress Note</option>
+                    <option>Consult Note</option>
+                    <option>Procedure Note</option>
+                </select> -->
+                <textarea>A note would go here.</textarea>
+                <nav>for unsigned note<button>edit</button><button>save</button><button>sign</button></nav>
+                <nav>for signed note, button should toggle text area<button>addendum</button></nav>   
+                <textarea>
+Addendum would go here.  Addendum button only visible if signed.  When clicked, this text area appears.
+If the note above is already saved, it will resave what's in the note and add this to the end.
+If the note above is not yet saved, it will resave what's in the note and add this to the end.
+                </textarea>
+                <nav>clicking this button would resave what's in note and add this to the end<button>Add addendum to note</button></nav>
+            </div>
+
+        </div>
+    </main>
+    <main id="main3">
+        main3 is here
+    </main>
+    <script>
+
+        // let healthMaintenance = [
+        //     {
+        //         "name":"Colonoscopy",
+        //         ""
+
+        //     }
+        // ]
+
+
+
+        document.getElementById("show-main1").addEventListener("click", () => showMain("main1"));
+        document.getElementById("show-main2").addEventListener("click", () => showMain("main2"));
+        document.getElementById("show-main3").addEventListener("click", () => showMain("main3"));
+        function showMain(id) {
+            let mains = document.getElementsByTagName("main");
+            for (let i = 0; i < mains.length; i++) {
+                if (mains[i].id === id) {
+                    mains[i].style.display = "block";
+                }
+                else {
+                    mains[i].style.display = "none";
+                }
+            }
+        }
+        showMain("main1");
+
+    </script>
+</body>
+
+</html>
